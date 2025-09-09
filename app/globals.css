@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* Tema oscuro minimalista inspirado en Revolut */
+:root {
+  --background: #0a0b0e; /* Negro más profundo */
+  --foreground: #f4f4f5; /* zinc-100 - texto más claro */
+  --muted: #a1a1aa;      /* zinc-400 - texto secundario */
+  --accent: #00D4AA;     /* verde Revolut más vibrante */
+  --border: rgba(244, 244, 245, 0.1); /* borders sutiles */
+  
+  /* Fuentes */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), 'Courier New', monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* Mejor selección de texto */
+::selection {
+  background: var(--accent);
+  color: black;
+}
+
+/* Gradiente de fondo sutil */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(0, 212, 170, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 212, 170, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Animaciones suaves */
+.fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Hover sutil para tarjetas */
+.card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+.card-hover:hover { transform: translateY(-2px); }
+
+/* Respeta reducida animación */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, .fade-in-up, .skeleton::after { animation: none !important; }
+}
+
+/* Mejoras para mobile */
+@media (max-width: 640px) {
+  .card-hover:hover { transform: none; } /* Desactivar hover en mobile */
+  body { font-size: 14px; } /* Texto base más pequeño en mobile */
+}
+
+/* Asegurar que los inputs sean touch-friendly */
+input, button, select, textarea {
+  min-height: 44px; /* Altura mínima para touch targets */
+}
+
+@media (max-width: 640px) {
+  input, button, select, textarea {
+    font-size: 16px; /* Prevenir zoom en iOS */
+  }
+}
