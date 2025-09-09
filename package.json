@@ -1,17 +1,28 @@
 {
-  "name": "mini-saas",
-  "version": "0.1.0",
+  "name": "mini-saas-revolut",
+  "version": "1.0.0",
+  "description": "Complete Mini-SaaS platform with Revolut-inspired design - Next.js 15, Stripe, NextAuth, TailwindCSS v4",
   "private": true,
+  "author": "john2k2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/john2k2/mini-saas-.git"
+  },
   "scripts": {
     "dev": "concurrently \"npm run dev:next\" \"npm run dev:stripe:check\"",
     "dev:next": "next dev --turbopack",
+    "dev:simple": "next dev",
     "dev:stripe": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "dev:stripe:check": "node scripts/check-stripe.js",
     "build": "next build",
-    "build:turbo": "next build --turbopack",
-    "build:check": "node scripts/pre-build.js && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "type-check": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:studio": "prisma studio",
+    "clean": "rm -rf .next out dist"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
