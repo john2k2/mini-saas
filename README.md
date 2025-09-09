@@ -14,8 +14,6 @@ npm run dev
 
 > Setup completo (OAuth Google, Stripe, webhooks, deploy) ➜ **[docs/setup.md](docs/setup.md)**
 
-## Capturas (opcional)
-Agrega imágenes en `docs/screenshots/` y enlázalas aquí.
 
 ## Stack
 Next.js (App Router) · TypeScript · NextAuth · Prisma · Stripe · TailwindCSS · SQLite
